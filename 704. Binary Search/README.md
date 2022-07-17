@@ -1,6 +1,7 @@
 ## Binary Search
 
-Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If `target` exists, then return its index. Otherwise, return `-1`.
+Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, 
+write a function to search `target` in `nums`. If `target` exists, then return its index. Otherwise, return `-1`.
 
 You must write an algorithm with `O(log n)` runtime complexity.
 
@@ -15,3 +16,31 @@ You must write an algorithm with `O(log n)` runtime complexity.
     Input: nums = [-1,0,3,5,9,12], target = 2
     Output: -1
     Explanation: 2 does not exist in nums so return -1
+
+## My Solution (Python3):
+
+    def search(nums, target):
+      '''
+          Search through a sorted list to find index of target value
+          return -1 if target value is not found in list
+      '''
+      # initialize starting and last position of nums list
+      first_pos = 0
+      last_pos = len(nums) - 1
+    
+      while first_pos <= last_pos:
+        # Retreive the middle position between the first and last position value
+        midpoint = (first_pos + last_pos) // 2
+    
+        if nums[midpoint] == target:
+          # Output the position of the target value if found in list
+            return midpoint
+        elif nums[midpoint] < target:
+          # Update first_pos value, changing the midpoint value in the next iteration
+            first_pos = midpoint + 1
+        else:
+          # Update last_pos value, changing the midpoint value in the next iteration
+            last_pos = midpoint - 1
+            
+      # If the while loop could not find the target value inside the list, output -1
+      return -1
